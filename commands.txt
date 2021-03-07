@@ -1,0 +1,73 @@
+# commands.txt
+
+
+# docker cli
+docker pull postgres:alpine
+docker images
+docker run --name pg-db-01 -e POSTGRES_PASSWORD=password -d -p 5432:5432 postgres:alpine
+docker ps
+
+## enter docker
+docker exec -it pg-db-01 bash
+psql
+pwd
+ls
+
+# postgresql cli
+
+## enter postgres
+psql -U postgres
+\du
+create database test;
+\l
+\c test
+\d
+
+## connect to postgresql db and create a table
+psql -h localhost -p 5432 -U postgres
+create table students();
+\dt;
+\d students;
+
+
+# sql commands
+
+## create new table called students
+CREATE TABLE IF NOT EXISTS student (
+	id UUID NOT NULL PRIMARY KEY,
+	name VARCHAR(100) NOT NULL,
+	course VARCHAR(100)	NOT NULL,
+	email_id UUID REFERENCES email (id)
+);
+
+## create new table called email
+CREATE TABLE IF NOT EXISTS email (
+	id UUID NOT NULL PRIMARY KEY,
+	email VARCHAR(200) NOT NULL UNIQUE
+);
+
+\dt+ email;
+\dt+ student;
+
+
+## insert a student into database
+create extension if not exists "uuid-ossp";
+select uuid_generate_v1();
+insert into student(id, name, course) values (uuid_generate_v1(), 'Tim', 'accounting class');
+
+
+
+select * from student;
+localhost:8080/api/v1/students
+docker ps
+docker stop 9c121a62f281
+
+
+
+
+
+
+
+
+
+# end

@@ -17,8 +17,18 @@ node index.js
 ```
 
 
-## summary :helicopter:
+## todo :helicopter:
 ![summary](https://media.giphy.com/media/GoRkPquMO1qgw/giphy.gif)
+-----------------------------------------------------------------------------
+```
+1. create server
+2. read input files
+3. compute results
+4. save results to db
+5. output db summary
+6. wrap & rebuild docker
+```
+-----------------------------------------------------------------------------
 
 
 ## 2. known accounts
@@ -31,19 +41,22 @@ Jadzia Dax: 2N1SP7r92ZZJvYKG2oNtzPwYnzw62up7mTo
 Montgomery Scott: mutrAf4usv3HKNdpLwVD4ow2oLArL6Rez8
 James T. Kirk: miTHhiX3iFhVnAEecLjybxvV5g8mKYTtnM
 Spock: mvcyJMiAcSXKAEsQxbW9TYZ369rsMG6rVV
+Unknown Customer:
 ```
 -----------------------------------------------------------------------------
 
 
 ## 3. input files containing account transactions
-```
+
 - [transactions-1.json](https://github.com/timxor/bitcoind-data-ingestion/blob/main/transactions-1.json) or raw [transactions-1.json raw](https://raw.githubusercontent.com/timxor/bitcoind-data-ingestion/main/transactions-1.json)
+
 - [transactions-2.json](https://github.com/timxor/bitcoind-data-ingestion/blob/main/transactions-2.json) or raw [transactions-2.json raw](https://raw.githubusercontent.com/timxor/bitcoind-data-ingestion/main/transactions-2.json)
-```
 
 ## 4. transaction structure
 -----------------------------------------------------------------------------
+
 ```
+
 "transactions":
   [
     {
@@ -65,8 +78,9 @@ Spock: mvcyJMiAcSXKAEsQxbW9TYZ369rsMG6rVV
       "bip125-replaceable":"no"
     }
   ],
-  "removed":[],
-  "lastblock":"4f66926440f1b39fcd5db66609737f877ce32abfc68a945fbd049996ce7d0da2"
+"removed":[],
+"lastblock":"4f66926440f1b39fcd5db66609737f877ce32abfc68a945fbd049996ce7d0da2"
+
 ```
 -----------------------------------------------------------------------------
 
@@ -147,18 +161,5 @@ CREATE TABLE IF NOT EXISTS email (
 	id UUID NOT NULL PRIMARY KEY,
 	email VARCHAR(200) NOT NULL UNIQUE
 );
-```
------------------------------------------------------------------------------
-
-
-## 8. todo
------------------------------------------------------------------------------
-```
-1. create server
-2. read input files
-3. compute results
-4. save results to db
-5. output db summary
-6. wrap & rebuild docker
 ```
 -----------------------------------------------------------------------------
