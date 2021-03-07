@@ -10,6 +10,12 @@ docker-compose up
 docker ps
 
 ```
+or
+```
+npm install
+node index.js
+```
+
 
 ## summary :helicopter:
 ![summary](https://media.giphy.com/media/GoRkPquMO1qgw/giphy.gif)
