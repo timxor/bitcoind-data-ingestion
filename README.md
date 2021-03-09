@@ -6,16 +6,15 @@ See [requirements.md](https://github.com/timxor/bitcoind-data-ingestion/blob/mai
 ## 1. running docker/server/postgres
 
 ```
+npm install
+node index.js
+```
+or
+```
 docker-compose up
 docker ps
 
 ```
-or
-```
-npm install
-node index.js
-```
-
 
 ## todo :helicopter:
 ![summary](https://media.giphy.com/media/GoRkPquMO1qgw/giphy.gif)

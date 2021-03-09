@@ -4,13 +4,13 @@ const { Client } = require('pg');
 
 const client = new Client({
   connectionString: dbConfig.URL,
-  ssl: true
+  ssl: process.env.DATABASE_URL ? true : false
 })
 client.connect();
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
-  operatorsAliases: false,
+  operatorsAliases: 0,
   dialect: 'postgres',
   protocol: 'postgres',
 

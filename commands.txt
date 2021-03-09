@@ -4,11 +4,11 @@
 # docker cli
 docker pull postgres:alpine
 docker images
-docker run --name pg-db-01 -e POSTGRES_PASSWORD=password -d -p 5432:5432 postgres:alpine
+docker run --name bitcoind-ingestion-db-01 -e POSTGRES_PASSWORD=password -d -p 5432:5432 postgres:alpine
 docker ps
 
 ## enter docker
-docker exec -it pg-db-01 bash
+docker exec -it bitcoind-ingestion-db-01 bash
 psql
 pwd
 ls
@@ -32,18 +32,48 @@ create table students();
 
 # sql commands
 
-## create new table called students
-CREATE TABLE IF NOT EXISTS student (
+## create new table called transactions
+CREATE TABLE IF NOT EXISTS transactions (
 	id UUID NOT NULL PRIMARY KEY,
 	name VARCHAR(100) NOT NULL,
-	course VARCHAR(100)	NOT NULL,
-	email_id UUID REFERENCES email (id)
+	address VARCHAR(100) NOT NULL,
+  category VARCHAR(100) NOT NULL,
+  amount INT NOT NULL,
+  confirmations INT NOT NULL,
+  blockhash VARCHAR(100) NOT NULL,
+  blockindex INT NOT NULL,
+  blocktime INT NOT NULL,
+  txid VARCHAR(100) NOT NULL,
+  vout INT NOT NULL,
+  time INT NOT NULL,
+  timereceived INT NOT NULL,
 );
 
-## create new table called email
-CREATE TABLE IF NOT EXISTS email (
+insert into student(id, name, course) values (uuid_generate_v1(), 'Tim', 'accounting class');
+
+email_id UUID REFERENCES email (id)
+
+insert into student(id, name, address, category,
+                    amount, confirmations, blockhash,
+                    blockindex, blocktime, txid,
+                    vout, time, timereceived)
+                    values (uuid_generate_v1(), 'Wesley Crusher', 'receive',
+                    1, 62, '5da873d0c0bce143cf159cb527849018d91e67493a0d06d6a92f4b510a1a62d0',
+                    14, 1524876487278, '79c4eca76f69d9a696a6af11ac9ddd47781c369891d5a2d22fc973b300d6eaf0',
+                    68, 1524876460090, 1524876460090);
+
+
+
+
+
+
+
+
+
+## create new table called customers
+CREATE TABLE IF NOT EXISTS customers (
 	id UUID NOT NULL PRIMARY KEY,
-	email VARCHAR(200) NOT NULL UNIQUE
+	name VARCHAR(200) NOT NULL UNIQUE
 );
 
 \dt+ email;
@@ -53,9 +83,11 @@ CREATE TABLE IF NOT EXISTS email (
 ## insert a student into database
 create extension if not exists "uuid-ossp";
 select uuid_generate_v1();
+
+
 insert into student(id, name, course) values (uuid_generate_v1(), 'Tim', 'accounting class');
 
-
+a9ed13caa3f13c7168d4c4c52c0439502e46541217eb74b84608510dbc0caf74
 
 select * from student;
 localhost:8080/api/v1/students

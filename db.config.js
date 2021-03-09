@@ -8,7 +8,7 @@ module.exports = {
   USER: process.env.DATABASEUSER,
   PASSWORD: process.env.DATABASEPASSWORD,
   DB: process.env.DATABASE,
-  ssl: true,
+  ssl: process.env.DATABASE_URL ? true : false,
   dialect: 'postgres',
   pool: {
     max: 50,
